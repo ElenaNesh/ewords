@@ -68,9 +68,14 @@
 }
 
 .words-list {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
     max-width: 100%;
-    background-color: gray;
+    background-color: rgb(212, 221, 223);
     margin-left: 200px;
+    margin-right: 200px;
     margin-top: 20px;
 }
 

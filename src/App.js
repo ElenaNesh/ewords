@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Topic from './components/topics';
-import words from './components/words';
-import KnownUnknown from './components/knownUnknown';
+import Topic from './components/Topics';
+import words from './components/Words';
+import KnownUnknown from './components/KnownUnknown';
+import WordsList from './components/WordsList';
 import './App.css';
 
 function App() {
@@ -27,9 +28,12 @@ function App() {
           <h2>Текущая тема: {selectedTopic}</h2>
           <KnownUnknown selectedTopic={selectedTopic} />
           <h2>Список всех слов в категории</h2>
-          <WordsList></WordsList>
+          <WordsList selectedTopic={selectedTopic} />
         </div>
       </div>
+    <footer>
+      <p>Изучаем английский</p>
+    </footer>
     </>
   );
 }

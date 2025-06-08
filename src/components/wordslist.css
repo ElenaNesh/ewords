@@ -1,0 +1,26 @@
+.word-row {
+    display: flex;
+    gap: 20px;
+    height: 60px;
+}
+
+.word-row input {
+    height: 50%;
+    margin-top: 15px;
+}
+
+.words-list-main, .words-list-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.word-row button {
+    height: 50%;
+    margin-top: 15px;
+}
+
+.words-list-main {
+    width: 400px;
+}
+

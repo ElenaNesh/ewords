@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import WordCard from "./WordCard";
-import words from "./words";
+import words from "./Words";
 import './knownUnknown.css';
 
 const KnownUnknown = ({ selectedTopic }) => {
