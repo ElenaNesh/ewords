@@ -1,24 +1,36 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Topic from './components/topics';
+import words from './components/words';
+import KnownUnknown from './components/knownUnknown';
 import './App.css';
 
 function App() {
+  const [selectedTopic, setSelectedTopic] = useState(null);
+  const tagsWithDefault = words.map(word => word.tags.trim() === '' ? 'Без темы' : word.tags);
+  const uniqueTags = Array.from(new Set(tagsWithDefault));
+  const handleTopicClick = (tag) => {
+    setSelectedTopic(tag);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Изучаем английский</h1>
+      <div className='main-wrapper'>
+        <aside>
+          <h3>Выберите категорию</h3>
+          {uniqueTags.map((tag, index) => (
+            <div key={index} onClick={() => handleTopicClick(tag)} className='topic-button'>
+            <Topic key={index} name={tag}/>
+            </div>
+          ))}
+        </aside>
+        <div className="app-container">
+          <h2>Текущая тема: {selectedTopic}</h2>
+          <KnownUnknown selectedTopic={selectedTopic} />
+          <h2>Список всех слов в категории</h2>
+          <WordsList></WordsList>
+        </div>
+      </div>
+    </>
   );
 }
 
