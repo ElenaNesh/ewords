@@ -1,0 +1,117 @@
+.knownUnknown {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.main-cover{
+    width: 50vw;
+}
+
+.folders-wrapper {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+
+.buttons-wrapper {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.cards-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons-wrapper button {
+    padding: 10px 20px;
+    width: 100px;
+    border: none;
+    background-color: #5a5adf;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.buttons-wrapper button:hover {
+    transform: scale(1.1);
+}
+
+.folder {
+    width: 150px;
+    border-radius: 10px;
+    padding: 10px;
+    animation: fadeIn 0.3s ease;
+}
+
+.known {
+    background-color: rgb(166, 230, 166);
+}
+
+.unknown {
+    background-color: rgba(255, 0, 0, 0.199);
+}
+
+.folder h3 {
+    text-align: center;
+    font-size: 16px;
+}
+
+.folder-word {
+    background-color: #ffffff;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 4px;
+    text-align: center;
+    animation: fadeInScale 0.3s ease;
+}
+
+
+.reset-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.react-card-flip {
+    width: 100%;
+    background-color: gray;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    padding: 20px;
+}
+
+.react-card-flip button {
+    padding: 10px 20px;
+    width: 150px;
+    border: none;
+    background-color: rgb(149, 149, 216);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+@keyframes fadeInScale {
+    from {
+    opacity: 0;
+    transform: scale(0.9);
+    }
+    to {
+    opacity: 1;
+    transform: scale(1);
+    }
+}

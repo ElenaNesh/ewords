@@ -1,0 +1,36 @@
+.nav-bar {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0; 
+    z-index: 100;
+}
+
+.nav-li {
+    max-width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0;
+    gap: 5px;
+}
+
+.navbar-item {
+    list-style: none; 
+    background-color:gray;
+    width: 100px;
+    text-align: center;
+    border: 3px solid gray;
+    border-radius: 5px;
+}
+
+.navbar-item:hover {
+    background-color: rgb(178, 230, 240);
+    border:3px solid rgb(178, 230, 240);
+}
+.navbar-link {
+    text-decoration: none;
+    color: black;
+}

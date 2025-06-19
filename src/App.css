@@ -1,24 +1,11 @@
-h1 {
-  text-align: center;
-  height: 100px;
-  margin: 3vh;
-  padding: 0;
-}
-.app-container h2 {
-  text-align: center;
-}
-h3 {
-  text-align: center;
-}
-
-.react-card-flip {
-  background-color: gray;
-  width: 300px;
-  height: 200px;
+.app {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  border-radius: 10px;
+  min-height: 100vh;
+}
+
+.main-wrapper {
+  flex: 1;
 }
 
 .card-front, .card-back {
@@ -28,33 +15,6 @@ h3 {
   justify-content: center;
 }
 
-aside {
-  position: absolute;
-  left: 10px;
-  top: 3vh;
-  width: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.topic-wrapper {
-  background-color: rgb(149, 149, 216);
-  width: 150px;
-  text-align: center;
-  border-radius: 5px;
-}
 
-.topic-wrapper:hover {
-  background-color: rgb(12, 12, 160);
-  cursor: pointer;
-}
 
-.topic-wrapper p {
-  padding: 10px;
-  margin: 5px;
-}
-
-footer {
-  text-align: center;
-}

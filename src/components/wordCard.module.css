@@ -1,7 +1,21 @@
 .knownUnknown {
     display: flex;
+    flex-direction: row;
     gap: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
 }
+
+.main-cover{
+    width: 50vw;
+}
+
+.folders-wrapper {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
 .buttons-wrapper {
     margin-top: 20px;
     display: flex;
@@ -10,11 +24,12 @@
 }
 
 .cards-wrapper {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: calc(100vw / 2 - 150px);
 }
+
 .buttons-wrapper button {
     padding: 10px 20px;
     width: 100px;
@@ -28,14 +43,6 @@
 
 .buttons-wrapper button:hover {
     transform: scale(1.1);
-}
-
-.folders-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    gap: 30px;
-    align-items: flex-start;
 }
 
 .folder {
@@ -67,22 +74,65 @@
     animation: fadeInScale 0.3s ease;
 }
 
-.words-list {
+/* Стили для карточек */
+.card-front, .card-back {
+    width: 300px;
+    height: 200px;
+    background-color: #f0f0f0;
+    border: 2px solid #ddd;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
-    justify-items: center;
+    justify-content: center;
     align-items: center;
-    max-width: 100%;
-    background-color: rgb(212, 221, 223);
-    margin-left: 200px;
-    margin-right: 200px;
-    margin-top: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card-front:hover, .card-back:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.card-front {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.card-back {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.card-front h2, .card-back h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.card-front p {
+    margin: 10px 0 0 0;
+    font-size: 16px;
+    opacity: 0.9;
 }
 
 .react-card-flip {
+    width: 100%;
+    background-color: gray;
     display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 10px;
     align-items: center;
     justify-content: center;
+    min-height: 200px;
+    padding: 20px;
+}
+
+.react-card-flip h2 {
+    color: white;
+    margin-bottom: 20px;
 }
 
 .react-card-flip button {
@@ -90,9 +140,15 @@
     width: 150px;
     border: none;
     background-color: rgb(149, 149, 216);
+    color: white;
     border-radius: 5px;
     cursor: pointer;
     transition: transform 0.3s ease;
+}
+
+.react-card-flip button:hover {
+    transform: scale(1.05);
+    background-color: rgb(130, 130, 200);
 }
 
 @keyframes fadeInScale {
