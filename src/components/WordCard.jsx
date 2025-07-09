@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from "react";
 import ReactCardFlip from "react-card-flip";
 import styles from './wordCard.module.css'
 
-function WordCard ({word, transcription, theme, translation, studiedCount, totalWords, currentIndex, onWordStudied}) {
+function WordCard ({word, transcription, theme, translation, studiedCount, totalWords, currentIndex, selectedTopic, onWordStudied}) {
       const [isFlipped, setIsFlipped] = useState(false);
       const translateButtonRef = useRef(null); // Создаем ref для кнопки
 
@@ -13,10 +13,10 @@ function WordCard ({word, transcription, theme, translation, studiedCount, total
 
   // Устанавливаем фокус на кнопку при смене карточки
   useEffect(() => {
-    if (translateButtonRef.current) {
-      translateButtonRef.current.focus();
-    }
-  }, [currentIndex]); // Теперь зависимость от currentIndex
+      if (translateButtonRef.current) {
+        translateButtonRef.current.focus();
+      }
+  }, [currentIndex, selectedTopic]);
 
   const handleClick = () => {
     setIsFlipped(!isFlipped);

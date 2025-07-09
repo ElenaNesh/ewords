@@ -38,19 +38,33 @@ const KnownUnknown = ({ selectedTopic }) => {
         }
     };
 
-    const handleKnow = () => {
+    const handleAnswer = (isKnown) => {
         if (!currentWord) return;
-        setKnownWords(prev => [...prev, currentWord]);
-        setStudiedCount(prev => prev + 1); // Увеличиваем счетчик изученных слов
-        nextWord();
-    };
 
-    const handleDontKnow = () => {
-        if (!currentWord) return;
+        if (isKnown) {
+        setKnownWords(prev => [...prev, currentWord]);
+        } else {
         setUnknownWords(prev => [...prev, currentWord]);
-        setStudiedCount(prev => prev + 1); // Увеличиваем счетчик изученных слов
+        }
+
+        setStudiedCount(prev => prev + 1);
+        handleWordStudied();
         nextWord();
-    };
+        };
+
+    // const handleKnow = () => {
+    //     if (!currentWord) return;
+    //     setKnownWords(prev => [...prev, currentWord]);
+    //     setStudiedCount(prev => prev + 1); // Увеличиваем счетчик изученных слов
+    //     nextWord();
+    // };
+
+    // const handleDontKnow = () => {
+    //     if (!currentWord) return;
+    //     setUnknownWords(prev => [...prev, currentWord]);
+    //     setStudiedCount(prev => prev + 1); // Увеличиваем счетчик изученных слов
+    //     nextWord();
+    // };
 
     const resetGame = () => {
         setCurrentIndex(0);
@@ -74,11 +88,12 @@ const KnownUnknown = ({ selectedTopic }) => {
                                 studiedCount={studiedCount} // Передаем счетчик изученных слов
                                 totalWords={filteredWords.length}
                                 currentIndex={currentIndex} // Передаем текущий индекс для автофокуса
+                                selectedTopic={selectedTopic}
                                 onWordStudied={handleWordStudied}
                             />
                             <div className={styles['buttons-wrapper']}>
-                                <button onClick={handleKnow}>Знаю</button>
-                                <button onClick={handleDontKnow}>Не знаю</button>
+                                <button onClick={() => handleAnswer(true)}>Знаю</button>
+                                <button onClick={() => handleAnswer(false)}>Не знаю</button>
                             </div>
                         </>
                     ) : (
