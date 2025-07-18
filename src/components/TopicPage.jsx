@@ -8,7 +8,7 @@ function TopicPage() {
   return (
     <div className="topic-container">
       <h2 style={{textAlign:'center'}}>Текущая тема: {topicName}</h2>
-      <KnownUnknown selectedTopic={topicName} />
+      <KnownUnknown />
     </div>
   );
 }

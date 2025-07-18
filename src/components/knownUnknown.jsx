@@ -1,30 +1,32 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
+import { useWords } from "./WordsContext";
 import WordCard from "./WordCard";
-import words from "./Words";
 import styles from './knownUnknown.module.css'
 
-const KnownUnknown = ({ selectedTopic }) => {
+const KnownUnknown = () => {
+    const { topicName } = useParams(); // Получаем тему из URL
+    const { getWordsByTag } = useWords(); // Используем контекст для получения слов
+    
     const [knownWords, setKnownWords] = useState([]);
     const [unknownWords, setUnknownWords] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [filteredWords, setFilteredWords] = useState([]);
     const [studiedWords, setStudiedWords] = useState(new Set());
-    const [studiedCount, setStudiedCount] = useState(0); // Новое состояние для подсчета изученных слов
+    const [studiedCount, setStudiedCount] = useState(0);
 
     // Обновляем filteredWords при смене темы
     useEffect(() => {
-        const newFiltered = selectedTopic
-            ? words.filter(word =>
-                (word.tags.trim() === '' ? 'Без темы' : word.tags) === selectedTopic)
-            : words;
-
+        // Получаем слова для выбранной темы из контекста
+        const newFiltered = getWordsByTag(topicName || 'all');
+        
         setFilteredWords(newFiltered);
         setCurrentIndex(0);
         setKnownWords([]);
         setUnknownWords([]);
         setStudiedWords(new Set());
-        setStudiedCount(0); // Сбрасываем счетчик при смене темы
-    }, [selectedTopic]);
+        setStudiedCount(0);
+    }, [topicName, getWordsByTag]);
 
     const currentWord = filteredWords[currentIndex] || null;
 
@@ -42,36 +44,22 @@ const KnownUnknown = ({ selectedTopic }) => {
         if (!currentWord) return;
 
         if (isKnown) {
-        setKnownWords(prev => [...prev, currentWord]);
+            setKnownWords(prev => [...prev, currentWord]);
         } else {
-        setUnknownWords(prev => [...prev, currentWord]);
+            setUnknownWords(prev => [...prev, currentWord]);
         }
 
         setStudiedCount(prev => prev + 1);
         handleWordStudied();
         nextWord();
-        };
-
-    // const handleKnow = () => {
-    //     if (!currentWord) return;
-    //     setKnownWords(prev => [...prev, currentWord]);
-    //     setStudiedCount(prev => prev + 1); // Увеличиваем счетчик изученных слов
-    //     nextWord();
-    // };
-
-    // const handleDontKnow = () => {
-    //     if (!currentWord) return;
-    //     setUnknownWords(prev => [...prev, currentWord]);
-    //     setStudiedCount(prev => prev + 1); // Увеличиваем счетчик изученных слов
-    //     nextWord();
-    // };
+    };
 
     const resetGame = () => {
         setCurrentIndex(0);
         setKnownWords([]);
         setUnknownWords([]);
         setStudiedWords(new Set());
-        setStudiedCount(0); // Сбрасываем счетчик при сбросе игры
+        setStudiedCount(0);
     };
 
     return (
@@ -85,10 +73,9 @@ const KnownUnknown = ({ selectedTopic }) => {
                                 transcription={currentWord.transcription}
                                 translation={currentWord.russian}
                                 theme={currentWord.tags}
-                                studiedCount={studiedCount} // Передаем счетчик изученных слов
+                                studiedCount={studiedCount}
                                 totalWords={filteredWords.length}
-                                currentIndex={currentIndex} // Передаем текущий индекс для автофокуса
-                                selectedTopic={selectedTopic}
+                                currentIndex={currentIndex}
                                 onWordStudied={handleWordStudied}
                             />
                             <div className={styles['buttons-wrapper']}>
@@ -100,7 +87,7 @@ const KnownUnknown = ({ selectedTopic }) => {
                         <div className={styles['react-card-flip']}>
                             <div className={styles['reset-card']}>
                                 <h2>Вы прошли все слова!</h2>
-                                <p>Изучено слов: {studiedCount}</p> {/* Показываем итоговый результат */}
+                                <p>Изучено слов: {studiedCount}</p>
                                 <button onClick={resetGame}>
                                     Начать заново
                                 </button>
